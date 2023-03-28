@@ -1,19 +1,24 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
+
+import TheHeader from './components/TheHeader.vue'
+
+let showHeader = true
+let showMoney = true
+let money = 100
+
+let acessLevel = ''
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+    <div class="teste">
+      <TheHeader v-if="showHeader" />
+      <div v-show="showMoney">dinheirinho: {{ money }}</div>
+      <div v-if="acessLevel === 1">admin</div>
+      <div v-else-if="acessLevel === 2">Marketing</div>
+      <div v-else>User</div>
+      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
     </div>
   </header>
 
@@ -21,7 +26,11 @@ import HelloWorld from './components/HelloWorld.vue'
 </template>
 
 <style scoped>
+.teste {
+  display: grid;
+}
 header {
+  justify-content: center;
   line-height: 1.5;
   max-height: 100vh;
 }
