@@ -8,10 +8,41 @@ let showMoney = true
 let money = 100
 
 let acessLevel = ''
+
+const todos = [
+  {
+    id: 1,
+    title: 'accusamus beatae ad facilis cum similique qui sunt',
+    url: 'https://via.placeholder.com/150/92c952',
+    alt: 'foto bonita1'
+  },
+  {
+    id: 2,
+    title: 'reprehenderit est deserunt velit ipsam',
+    alt: 'foto bonita2'
+  },
+  {
+    id: 3,
+    title: 'officia porro iure quia iusto qui ipsa ut modi',
+    url: 'https://via.placeholder.com/150/24f355',
+    alt: 'foto bonita3'
+  },
+  {
+    id: 4,
+    title: 'culpa odio esse rerum omnis laboriosam voluptate repudiandae',
+    alt: 'foto bonita4'
+  },
+  {
+    id: 5,
+    title: 'natus nisi omnis corporis facere molestiae rerum in',
+    url: 'https://via.placeholder.com/150/f66b97',
+    alt: 'foto bonita5'
+  }
+]
 </script>
 
 <template>
-  <header>
+  <main>
     <div class="teste">
       <TheHeader v-if="showHeader" />
       <div v-show="showMoney">dinheirinho: {{ money }}</div>
@@ -20,75 +51,28 @@ let acessLevel = ''
       <div v-else>User</div>
       <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
     </div>
-  </header>
+    <ul>
+      <li v-for="item in todos" :key="item.id">
+        {{ item.id }} -
+        {{ item.title }}
+        <img v-if="item.url" :src="item.url" :alt="item.alt" width="30" />
+      </li>
+    </ul>
+  </main>
 
   <RouterView />
 </template>
 
-<style scoped>
-.teste {
+<style lang="scss" scoped>
+main {
   display: grid;
-}
-header {
-  justify-content: center;
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
+  place-items: center;
   text-align: center;
-  margin-top: 2rem;
-}
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+  li {
+    list-style: none;
+    background-color: #333;
+    margin: 20px 0px;
   }
 }
 </style>
