@@ -9,6 +9,8 @@ let money = 100
 
 let acessLevel = ''
 
+let nome = 'rafael'
+
 const todos = [
   {
     id: 1,
@@ -58,6 +60,7 @@ const todos = [
         <img v-if="item.url" :src="item.url" :alt="item.alt" width="30" />
       </li>
     </ul>
+    <input type="text" v-model="nome" />
   </main>
 
   <RouterView />
