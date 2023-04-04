@@ -10,6 +10,7 @@ let money = 100
 let acessLevel = ''
 
 let nome = 'rafael'
+let idade = 99
 
 const todos = [
   {
@@ -41,6 +42,10 @@ const todos = [
     alt: 'foto bonita5'
   }
 ]
+
+function submeter() {
+  console.log('submetido com sucesso')
+}
 </script>
 
 <template>
@@ -53,6 +58,7 @@ const todos = [
       <div v-else>User</div>
       <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
     </div>
+
     <ul>
       <li v-for="item in todos" :key="item.id">
         {{ item.id }} -
@@ -60,7 +66,12 @@ const todos = [
         <img v-if="item.url" :src="item.url" :alt="item.alt" width="30" />
       </li>
     </ul>
-    <input type="text" v-model="nome" />
+
+    <form action="http://google.com" @submit.prevent="submeter">
+      <input type="text" v-model="nome" />
+      <input type="number" v-model="idade" />
+      <button type="submit">Enviar</button>
+    </form>
   </main>
 
   <RouterView />
