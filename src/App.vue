@@ -1,17 +1,18 @@
 <script setup>
 import { RouterView } from 'vue-router'
+import { reactive } from 'vue'
 
 import TheHeader from './components/TheHeader.vue'
 
+let acessLevel = ''
+let idade = 99
+let money = 100
+let nome = 'rafael'
 let showHeader = true
 let showMoney = true
-let money = 100
-
-let acessLevel = ''
-
-let nome = 'rafael'
-let idade = 99
-
+let valorUm = ''
+let valorDois = ''
+const lista = reactive([])
 const todos = [
   {
     id: 1,
@@ -29,19 +30,12 @@ const todos = [
     title: 'officia porro iure quia iusto qui ipsa ut modi',
     url: 'https://via.placeholder.com/150/24f355',
     alt: 'foto bonita3'
-  },
-  {
-    id: 4,
-    title: 'culpa odio esse rerum omnis laboriosam voluptate repudiandae',
-    alt: 'foto bonita4'
-  },
-  {
-    id: 5,
-    title: 'natus nisi omnis corporis facere molestiae rerum in',
-    url: 'https://via.placeholder.com/150/f66b97',
-    alt: 'foto bonita5'
   }
 ]
+
+function adicionar() {
+  lista.push({ valorUm, valorDois })
+}
 
 function submeter() {
   console.log('submetido com sucesso')
@@ -52,6 +46,9 @@ function submeter() {
   <main>
     <div class="teste">
       <TheHeader v-if="showHeader" />
+      <br />
+      <br />
+      <br />
       <div v-show="showMoney">dinheirinho: {{ money }}</div>
       <div v-if="acessLevel === 1">admin</div>
       <div v-else-if="acessLevel === 2">Marketing</div>
@@ -67,11 +64,28 @@ function submeter() {
       </li>
     </ul>
 
+    <br />
+    <br />
+    <br />
+
     <form action="http://google.com" @submit.prevent="submeter">
       <input type="text" v-model="nome" />
       <input type="number" v-model="idade" />
       <button type="submit">Enviar</button>
     </form>
+
+    <br />
+    <br />
+    <br />
+    <label for="">Da uma somada</label>
+    <input type="number" v-model="valorUm" />
+    <input type="number" v-model="valorDois" />
+    <button @click="adicionar()">adicionar</button>
+    <ul>
+      <li v-for="resultado in lista" :key="resultado.index">
+        <p>{{ resultado.valorUm + resultado.valorDois }}</p>
+      </li>
+    </ul>
   </main>
 
   <RouterView />
@@ -84,9 +98,16 @@ main {
   text-align: center;
 
   li {
+    padding: 10px;
     list-style: none;
     background-color: #333;
     margin: 20px 0px;
+    border-radius: 4px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
   }
 }
 </style>
