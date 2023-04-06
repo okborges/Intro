@@ -15,7 +15,7 @@ let valorDois = ''
 const lista = reactive([{ valorUm: 1, valorDois: 2 }])
 
 const soma = computed(() => {
-  return lista.valorDois
+  return lista[0].valorUm + lista[0].valorDois
 })
 
 const todos = [
@@ -88,7 +88,6 @@ function submeter() {
     <button @click="adicionar()">adicionar</button>
     <ul>
       <li v-for="resultado in lista" :key="resultado.index">
-        <p>{{ resultado.valorUm + resultado.valorDois }}</p>
         <p>{{ soma }}</p>
       </li>
     </ul>
