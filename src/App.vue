@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 
 import TheHeader from './components/TheHeader.vue'
 
@@ -12,7 +12,12 @@ let showHeader = true
 let showMoney = true
 let valorUm = ''
 let valorDois = ''
-const lista = reactive([])
+const lista = reactive([{ valorUm: 1, valorDois: 2 }])
+
+const soma = computed(() => {
+  return lista.valorDois
+})
+
 const todos = [
   {
     id: 1,
@@ -84,6 +89,7 @@ function submeter() {
     <ul>
       <li v-for="resultado in lista" :key="resultado.index">
         <p>{{ resultado.valorUm + resultado.valorDois }}</p>
+        <p>{{ soma }}</p>
       </li>
     </ul>
   </main>
