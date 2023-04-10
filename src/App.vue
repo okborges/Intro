@@ -15,7 +15,9 @@ let valorDois = ''
 const lista = reactive([{ valorUm: 1, valorDois: 2 }])
 
 const soma = computed(() => {
-  return lista[0].valorUm + lista[0].valorDois
+  return lista.forEach((element) => {
+    element.valorUm + element.valorDois
+  })
 })
 
 const todos = [
