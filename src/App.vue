@@ -3,6 +3,7 @@ import { RouterView } from 'vue-router'
 import { computed, reactive } from 'vue'
 
 import TheHeader from './components/TheHeader.vue'
+import TheComponente from './components/TheComponente.vue'
 
 let acessLevel = ''
 let idade = 99
@@ -73,7 +74,6 @@ function submeter() {
 
     <br />
     <br />
-    <br />
 
     <form action="http://google.com" @submit.prevent="submeter">
       <input type="text" v-model="nome" />
@@ -93,6 +93,8 @@ function submeter() {
         <p>{{ soma }}</p>
       </li>
     </ul>
+
+    <TheComponente> Apenas um teste de Slot</TheComponente>
   </main>
 
   <RouterView />
