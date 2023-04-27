@@ -4,6 +4,7 @@ import { computed, reactive } from 'vue'
 
 import TheHeader from './components/TheHeader.vue'
 import TheComponente from './components/TheComponente.vue'
+import UiAlert from './components/UiAlert.vue'
 
 let acessLevel = ''
 let idade = 99
@@ -94,7 +95,9 @@ function submeter() {
       </li>
     </ul>
 
-    <TheComponente> Apenas um teste de Slot</TheComponente>
+    <TheComponente>Apenas um teste de Slot</TheComponente>
+    <br />
+    <UiAlert variant="sucess" />
   </main>
 
   <RouterView />
