@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
 
 import TheHeader from './components/TheHeader.vue'
 import TheComponente from './components/TheComponente.vue'
@@ -14,6 +14,7 @@ let showHeader = true
 let showMoney = true
 let valorUm = ''
 let valorDois = ''
+const showAlert = ref(true)
 const lista = reactive([{ valorUm: 1, valorDois: 2 }])
 
 const soma = computed(() => {
@@ -48,6 +49,10 @@ function adicionar() {
 
 function submeter() {
   console.log('submetido com sucesso')
+}
+
+function fechar() {
+  showAlert.value = false
 }
 </script>
 
@@ -97,7 +102,7 @@ function submeter() {
 
     <TheComponente>Apenas um teste de Slot</TheComponente>
     <br />
-    <UiAlert variant="sucess" />
+    <UiAlert v-if="showAlert" variant="sucess" @close="fechar()" />
   </main>
 
   <RouterView />
