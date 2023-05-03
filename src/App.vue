@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { computed, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 
 import TheHeader from './components/TheHeader.vue'
 import TheComponente from './components/TheComponente.vue'
@@ -54,6 +54,8 @@ function submeter() {
 function fechar() {
   showAlert.value = false
 }
+
+
 </script>
 
 <template>
