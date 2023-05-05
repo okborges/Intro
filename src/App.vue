@@ -1,6 +1,7 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { computed, onMounted, reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
+import { useStore } from 'vuex'
 
 import TheHeader from './components/TheHeader.vue'
 import TheComponente from './components/TheComponente.vue'
@@ -54,8 +55,10 @@ function submeter() {
 function fechar() {
   showAlert.value = false
 }
+const store = useStore()
 
-
+const usuario = store.state.user
+console.log(store.state.user)
 </script>
 
 <template>
@@ -105,6 +108,8 @@ function fechar() {
     <TheComponente>Apenas um teste de Slot</TheComponente>
     <br />
     <UiAlert v-if="showAlert" variant="sucess" @close="fechar()" />
+
+    <h4>Estou sendo chamado pelo store {{ usuario }}</h4>
   </main>
 
   <RouterView />
