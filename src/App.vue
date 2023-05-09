@@ -1,121 +1,62 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { computed, reactive, ref } from 'vue'
+import { ref } from 'vue'
 import { useStore } from 'vuex'
 
 import TheHeader from './components/TheHeader.vue'
+import TheAcess from './components/TheAcess.vue'
 import TheComponente from './components/TheComponente.vue'
 import UiAlert from './components/UiAlert.vue'
 import AppProducts from './components/Products/AppProducts.vue'
+import TesteImg from './components/TesteImg.vue'
+import TheForm from './components/TheForm.vue'
+import TheSoma from './components/TheSoma.vue'
 
-let acessLevel = ''
-let idade = 99
-let money = 100
-let nome = 'rafael'
-let showHeader = true
-let showMoney = true
-let valorUm = ''
-let valorDois = ''
 const showAlert = ref(true)
-
-const lista = reactive([])
-
-const soma = computed(() => {
-  return lista.map((item) => item.valorUm + item.valorDois)
-})
-
-const todos = [
-  {
-    id: 1,
-    title: 'accusamus beatae ad facilis cum similique qui sunt',
-    url: 'https://via.placeholder.com/150/92c952',
-    alt: 'foto bonita1'
-  },
-  {
-    id: 2,
-    title: 'reprehenderit est deserunt velit ipsam',
-    alt: 'foto bonita2'
-  },
-  {
-    id: 3,
-    title: 'officia porro iure quia iusto qui ipsa ut modi',
-    url: 'https://via.placeholder.com/150/24f355',
-    alt: 'foto bonita3'
-  }
-]
-
-function adicionar() {
-  lista.push({ valorUm, valorDois })
-}
-
-function submeter() {
-  console.log('submetido com sucesso')
-}
+const store = useStore()
+const usuario = store.state.user
 
 function fechar() {
   showAlert.value = false
 }
-const store = useStore()
 
-const usuario = store.state.user
 console.log(store.state.user)
 </script>
 
 <template>
   <main>
-    <div class="teste">
-      <TheHeader v-if="showHeader" />
-      <br />
-      <br />
-      <br />
-      <div v-show="showMoney">dinheirinho: {{ money }}</div>
-      <div v-if="acessLevel === 1">admin</div>
-      <div v-else-if="acessLevel === 2">Marketing</div>
-      <div v-else>User</div>
-      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-    </div>
-
-    <ul>
-      <li v-for="item in todos" :key="item.id">
-        {{ item.id }} -
-        {{ item.title }}
-        <img v-if="item.url" :src="item.url" :alt="item.alt" width="30" />
-      </li>
-    </ul>
-
-    <br />
-    <br />
-
-    <form action="http://google.com" @submit.prevent="submeter">
-      <input type="text" v-model="nome" />
-      <input type="number" v-model="idade" />
-      <button type="submit">Enviar</button>
-    </form>
-
+    <TheHeader />
     <br />
     <br />
     <br />
-
-    <label for="">Da uma somada</label>
-    <input type="number" v-model="valorUm" />
-    <input type="number" v-model="valorDois" />
-    <button @click="adicionar()">adicionar</button>
-    <ul>
-      <li v-for="(resultado, index) in lista" :key="resultado.index">
-        <p>{{ soma[index] }}</p>
-      </li>
-    </ul>
-
+    <TheAcess />
+    <br />
+    <br />
+    <br />
+    <TesteImg />
+    <br />
+    <br />
+    <br />
+    <TheForm />
+    <br />
+    <br />
+    <br />
+    <TheSoma />
+    <br />
+    <br />
+    <br />
     <TheComponente>Apenas um teste de Slot</TheComponente>
     <br />
+    <br />
+    <br />
     <UiAlert v-if="showAlert" variant="sucess" @close="fechar()" />
-
+    <br />
+    <br />
+    <br />
     <h4>Estou sendo chamado pelo store {{ usuario }}</h4>
-
     <br />
     <br />
     <br />
-
     <AppProducts />
   </main>
 
@@ -127,18 +68,5 @@ main {
   display: grid;
   place-items: center;
   text-align: center;
-
-  li {
-    padding: 10px;
-    list-style: none;
-    background-color: #333;
-    margin: 20px 0px;
-    border-radius: 4px;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-  }
 }
 </style>

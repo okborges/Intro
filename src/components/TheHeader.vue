@@ -1,8 +1,3 @@
-<template>
-  <header :class="{ texto: true, tamanho: estaAtivo }">Header</header>
-  <button @click="ativar()">ativar</button>
-</template>
-
 <script setup>
 import { ref } from 'vue'
 
@@ -12,6 +7,11 @@ function ativar() {
   console.log(estaAtivo.value)
 }
 </script>
+
+<template>
+  <header :class="{ texto: true, tamanho: estaAtivo }">Header</header>
+  <button @click="ativar()">ativar</button>
+</template>
 
 <style lang="scss">
 header {
