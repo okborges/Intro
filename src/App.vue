@@ -6,6 +6,7 @@ import { useStore } from 'vuex'
 import TheHeader from './components/TheHeader.vue'
 import TheComponente from './components/TheComponente.vue'
 import UiAlert from './components/UiAlert.vue'
+import AppProducts from './components/Products/AppProducts.vue'
 
 let acessLevel = ''
 let idade = 99
@@ -16,12 +17,11 @@ let showMoney = true
 let valorUm = ''
 let valorDois = ''
 const showAlert = ref(true)
-const lista = reactive([{ valorUm: 1, valorDois: 2 }])
+
+const lista = reactive([])
 
 const soma = computed(() => {
-  return lista.forEach((element) => {
-    element.valorUm + element.valorDois
-  })
+  return lista.map((item) => item.valorUm + item.valorDois)
 })
 
 const todos = [
@@ -95,13 +95,14 @@ console.log(store.state.user)
     <br />
     <br />
     <br />
+
     <label for="">Da uma somada</label>
     <input type="number" v-model="valorUm" />
     <input type="number" v-model="valorDois" />
     <button @click="adicionar()">adicionar</button>
     <ul>
-      <li v-for="resultado in lista" :key="resultado.index">
-        <p>{{ soma }}</p>
+      <li v-for="(resultado, index) in lista" :key="resultado.index">
+        <p>{{ soma[index] }}</p>
       </li>
     </ul>
 
@@ -110,6 +111,12 @@ console.log(store.state.user)
     <UiAlert v-if="showAlert" variant="sucess" @close="fechar()" />
 
     <h4>Estou sendo chamado pelo store {{ usuario }}</h4>
+
+    <br />
+    <br />
+    <br />
+
+    <AppProducts />
   </main>
 
   <RouterView />

@@ -9,6 +9,7 @@
 body {
   background-color: #222;
   color: #ddd;
+  font-family: 'Roboto Mono', monospace;
 }
 input {
   background-color: #444;

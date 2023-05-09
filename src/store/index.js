@@ -7,5 +7,22 @@ export default createStore({
       last_name: 'Snow',
       email: 'JonSnow@gmail.com'
     }
-  }
+  },
+  products: [
+    {
+      id: 1,
+      name: 'Chuteira',
+      price: 100
+    },
+    {
+      id: 2,
+      name: 'Bola',
+      price: 200
+    },
+    {
+      id: 3,
+      name: 'Meião',
+      price: 50
+    }
+  ]
 })
