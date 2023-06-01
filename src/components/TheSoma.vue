@@ -3,27 +3,24 @@
     <label for="">Da uma somada</label>
     <input type="number" v-model="valorUm" />
     <input type="number" v-model="valorDois" />
-    <button @click="adicionar()">adicionar</button>
+    <button @click="adicionar">adicionar</button>
     <ul>
-      <li v-for="(resultado, index) in lista" :key="resultado.index">
-        <p>{{ soma[index] }}</p>
+      <li v-for="(resultado, index) in lista" :key="index">
+        <p>{{ resultado.soma }}</p>
       </li>
     </ul>
   </div>
 </template>
 
 <script setup>
-import { computed, reactive } from 'vue'
-let valorUm = ''
-let valorDois = ''
-const lista = reactive([])
-
-const soma = computed(() => {
-  return lista.map((item) => item.valorUm + item.valorDois)
-})
+import { ref } from 'vue'
+let valorUm = ref('')
+let valorDois = ref('')
+const lista = ref([])
 
 function adicionar() {
-  lista.push({ valorUm, valorDois })
+  const soma = parseInt(valorUm.value) + parseInt(valorDois.value)
+  lista.value.push({ valorUm: valorUm.value, valorDois: valorDois.value, soma })
 }
 </script>
 
